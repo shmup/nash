@@ -289,17 +289,6 @@ body {
   display: block;
 }
 
-#footer {
-  text-align: center;
-  margin-top: 20px;
-  color: var(--attribution-color);
-}
-
-#footer a {
-  text-decoration: none;
-  color: var(--attribution-color);
-}
-
 img {
   max-width: 100%;
   height: auto;
