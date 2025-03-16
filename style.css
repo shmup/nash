@@ -1,0 +1,331 @@
+:root {
+  --page-bg-color: #f8f9fa;
+  --page-text-color: #333;
+
+  --control-bg-color: #f8f9fa;
+  --control-text-color: buttontext;
+  --control-hover-bg-color: #f0f0f0;
+  --control-hover-text-color: #bbb;
+
+  --note-bg-color: #fff;
+  --note-placeholer-color: #bbb;
+  --note-link-color: #616161;
+
+  --attribution-color: #bbb;
+
+  /* text background colors */
+  --note-text-color-1: #000000;
+  /* black */
+  --note-text-color-2: #ff3b30;
+  /* red */
+  --note-text-color-3: #ff9500;
+  /* orange */
+  --note-text-color-4: #ffcc00;
+  /* yellow */
+  --note-text-color-5: #4cd964;
+  /* green */
+  --note-text-color-6: #5ac8fa;
+  /* light-blue */
+  --note-text-color-7: #007aff;
+  /* dark-blue */
+  --note-text-color-8: #5856d6;
+  /* violet */
+
+  /* highlight background colors */
+  --note-highlight-color-1: #fcecec;
+  /* red */
+  --note-highlight-color-2: #ffeceb;
+  /* orange */
+  --note-highlight-color-3: #fff8e1;
+  /* yellow */
+  --note-highlight-color-4: #f1fae5;
+  /* green */
+  --note-highlight-color-5: #e6f9f0;
+  /* light-blue */
+  --note-highlight-color-6: #e8f0fe;
+  /* violet */
+  --note-highlight-color-7: #e7f0ff;
+  /* dark-blue */
+  --note-highlight-color-8: #f3e8ff;
+  /* purple */
+}
+
+/* dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page-bg-color: #3a3a3a;
+    --page-text-color: #ddd;
+
+    --control-bg-color: #444;
+    --control-text-color: #aaa;
+    --control-hover-bg-color: #666;
+    --control-hover-text-color: #eee;
+
+    --note-bg-color: #333;
+    --note-placeholder-color: #555;
+
+    /*
+    TODO: choose nicer colers :-)
+     */
+
+    /* text background colors */
+    --note-text-color-1: #fafafa;
+    /* black / white */
+    --note-text-color-2: #ff3b30;
+    /* red */
+    --note-text-color-3: #ff9500;
+    /* orange */
+    --note-text-color-4: #ffcc00;
+    /* yellow */
+    --note-text-color-5: #4cd964;
+    /* green */
+    --note-text-color-6: #5ac8fa;
+    /* light-blue */
+    --note-text-color-7: #007aff;
+    /* dark-blue */
+    --note-text-color-8: #5856d6;
+    /* violet */
+
+    /* highlight background colors */
+    --note-highlight-color-1: hsl(0 50% 30%);
+    /* red */
+    --note-highlight-color-2: hsl(30 50% 30%);
+    /* orange */
+    --note-highlight-color-3: hsl(45 50% 30%);
+    /* yellow */
+    --note-highlight-color-4: hsl(120 50% 30%);
+    /* green */
+    --note-highlight-color-5: hsl(240 70% 40%);
+    /* light-blue */
+    --note-highlight-color-6: hsl(300 70% 40%);
+    /* violet */
+    --note-highlight-color-7: hsl(240 50% 30%);
+    /* dark-blue */
+    --note-highlight-color-8: hsl(330 50% 30%);
+    /* purple */
+  }
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: var(--page-bg-color);
+  color: var(--page-text-color);
+  margin: 0;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.editor-container {
+  width: 100%;
+  max-width: 800px;
+  background: var(--note-bg-color);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.file-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  padding: 0px 15px;
+  outline: none;
+  border: none;
+  width: 100%;
+  background: transparent;
+}
+
+.file-title:empty::before {
+  content: "Write your title here...";
+  color: var(--note-placeholder-color);
+  display: block;
+}
+
+#toolbar {
+  position: sticky;
+  position: -webkit-sticky;
+  gap: 8px;
+  top: 5px;
+  padding: 0 10px;
+  z-index: 9999;
+  background-color: var(--control-bg-color);
+  border-radius: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#toolbar #splitbar {
+  margin-left: auto;
+}
+
+#toolbar input[type="file"] {
+  display: none;
+}
+
+#toolbar button,
+#toolbar label,
+#toolbar select {
+  padding: 8px;
+  border: none;
+  background: none;
+  color: var(--control-text-color);
+  font-size: 16px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+#toolbar button:hover,
+#toolbar label:hover,
+#toolbar select:hover {
+  background: var(--control-hover-bg-color);
+  border-color: var(--control-hover-text-color);
+  color: var(--control-hover-text-color);
+}
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown button style */
+.dropdown > button {
+  padding: 6px 10px;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background: var(--control-bg-color);
+  border: 1px solid var(--control-bg-color);
+  color: var(--control-text-color);
+  padding: 8px;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+/* Show dropdown when .show is added */
+.dropdown-content.show {
+  display: block;
+}
+
+/* Grid of swatches */
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 24px);
+  gap: 6px;
+}
+
+.color-swatch {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.color-swatch:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+
+#saveDropdown {
+  width: 200px;
+}
+
+#saveDropdown button {
+  width: 100%;
+  text-align: left;
+}
+
+/* 편집 영역 */
+#editor {
+  border-radius: 12px;
+  padding: 15px;
+  min-height: 250px;
+  outline: none;
+  font-size: 16px;
+  line-height: 1.6;
+  /* background: #f4f4f4; */
+}
+
+#editor p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+#editor a {
+  color: var(--note-link-color);
+  text-decoration: none;
+  font-weight: 800;
+  transition: all 0.2s ease-in-out;
+  border-bottom: 2px solid transparent;
+}
+
+#editor a:hover {
+  border-bottom: 2px solid var(--note-link-color);
+  color: var(--note-link-color);
+}
+
+#editor a::before {
+  content: "🔗";
+}
+
+#editor:empty::before,
+#editor p:empty::before {
+  content: "Write your note here...";
+  color: var(--note-placeholder-color);
+  display: block;
+}
+
+#footer {
+  text-align: center;
+  margin-top: 20px;
+  color: var(--attribution-color);
+}
+
+#footer a {
+  text-decoration: none;
+  color: var(--attribution-color);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 10px 0;
+  border-radius: 12px;
+}
+
+.thin-line::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: var(--control-bg-color);
+  color: var(--control-text-color);
+  margin: 10px 0;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .editor-container {
+    width: 100%;
+    max-width: 100%;
+    box-shadow: none;
+  }
+}
