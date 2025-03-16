@@ -1,3 +1,6 @@
+format: inline
+  npx prettier --write index.html
+
 inline:
   #!/usr/bin/env bash
   awk '
